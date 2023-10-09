@@ -1,0 +1,16 @@
+body{
+    background-image: url(images/pin-board-pattern.jpg);
+    font-family: Montserrat;
+}
+
+header, footer{
+    background-color: #fff;
+}
+
+h1, h2{
+    font-family: Roboto Slab;
+}
+
+header > h2{
+    font-family: Montserrat;
+}
