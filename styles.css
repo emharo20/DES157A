@@ -4,12 +4,16 @@ body{
     color: #1f1f1f;
 }
 
-h1, h2{
+h1, main > h2{
     font-family: Roboto Slab;
 }
 
-h2{
-    text-decoration: underline;
+
+
+h1{
+    font-size: 4em;
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
 /* Header Styling */
@@ -25,19 +29,18 @@ h2{
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
 }
 
-h1{
-    font-size: 4em;
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
 main{
     margin: auto;
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 45px;
+    margin-bottom: 55px;
+}
+
+main h2{
+    text-decoration: underline;
+    text-align: center;
 }
 
 #gridpaper{
@@ -78,9 +81,16 @@ footer{
     max-width: 1000px;
     max-height: 200px;
     padding: 25px;
+    margin-left: auto;
+    margin-right: 45px;
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+    display: flex;
+    justify-content: space-around;
 }
 
 footer > p{
     font-weight: 600;
+    font-size: 1.2em;
+    margin: 0;
+    margin-top: 10px;
 }
