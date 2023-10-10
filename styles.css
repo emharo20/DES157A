@@ -1,10 +1,15 @@
 body{
     background-image: url(images/pin-board-pattern.jpg);
     font-family: Montserrat;
+    color: #1f1f1f;
 }
 
-h1, main > section > h2{
+h1, h2{
     font-family: Roboto Slab;
+}
+
+h2{
+    text-decoration: underline;
 }
 
 /* Header Styling */
@@ -26,13 +31,44 @@ h1{
     margin-bottom: 15px;
 }
 
-/* Unordered Lists Styling */
-ul li{
-    
+main{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#gridpaper{
+    background-color: #fff;
+    width: 300px;
+    height: 400px;
+    padding: 20px;
+    box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+}
+
+#card{
+    background-color: #fff;
+    width: 235px;
+    height: 400px;
+    padding: 16px;
+    box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
 }
 
 #postit{
     background-color: #ffef5f;
+    width: 200px;
+    height: 200px;
+    padding: 16px;
+    box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+}
+
+/* Unordered Lists Styling */
+ul li a{
+    display: block;
+    text-decoration: none;
+    color: #1f1f1f;
 }
 
 /* Footer Styling */
@@ -42,8 +78,9 @@ footer{
     max-width: 1000px;
     max-height: 200px;
     padding: 25px;
+    box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
 }
 
 footer > p{
-    font-weight: 500;
+    font-weight: 600;
 }
