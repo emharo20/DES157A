@@ -10,14 +10,6 @@ h1, main > section > h2{
     font-family: Roboto Slab;
 }
 
-.type-ani p{
-    font-family: Caveat;
-    font-size: 1.8em;
-    text-align: center;
-    margin: 0;
-    margin-top: 35px;
-}
-
 
 
 /* Header Styling */
@@ -49,11 +41,40 @@ header{
     background-color: #ff58c4;
     width: 200px;
     height: 120px;
+    font-family: Caveat;
+    font-size: 1.8em;
+    text-align: center;
+    /* display: inline-block; */
     position: absolute;
     right: 230px;
     top: 40px;
     transform: rotate(-25deg);
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+}
+
+#header-note p{
+    font-family: Caveat;
+    /* font-size: 1.8em; */
+    text-align: center;    
+    /* max-width: 190px; */
+    /* text-wrap: wrap; */
+    margin: 0;
+    margin-top: 35px;
+}
+
+.type-ani {
+    overflow: hidden;
+    white-space: balance;
+    width: 0;
+    animation: typing 1.5s steps(30, end) forwards;
+    /* animation-duration: 1.5s;
+    animation-timing-function: steps(30, end);
+    animation-fill-mode: forwards; */
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
 }
 
 #header-note > .tack{
@@ -66,7 +87,7 @@ header{
 main{
     margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     gap: 40px;
     margin-top: 50px;
     margin-bottom: 55px;
@@ -75,7 +96,7 @@ main{
 main h2{
     text-decoration: underline;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 #gridpaper{
@@ -124,6 +145,21 @@ main h2{
     left: 100px;
 }
 
+
+.swinging{
+    transform-origin: 50% 0;
+}
+
+.swinging:hover{
+    animation: swinging 3.5s ease infinite;
+}
+
+@keyframes swinging{
+    0%{transform: rotate(10deg);}
+    50%{transform: rotate(-5deg)}
+    100%{transform: rotate(10deg);}
+}
+
 /* Unordered Lists Styling */
 ul li a{
     display: block;
@@ -134,6 +170,7 @@ ul li a{
 ul li a:hover{
     font-weight: 600;
     color: #df0000;
+    font-size: 1.25em;
 }
 
 
