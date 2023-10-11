@@ -32,7 +32,7 @@ h1, main > section > h2{
     margin: auto;
     margin-top: 30px;
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
-    position: relative;
+    
 }
 
 h1{
@@ -41,15 +41,25 @@ h1{
     margin-bottom: 15px;
 }
 
+header{
+    position: relative;
+}
+
 #header-note{
     background-color: #ff58c4;
     width: 200px;
     height: 120px;
     position: absolute;
     right: 230px;
-    top: 100px;
+    top: 40px;
     transform: rotate(-25deg);
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+}
+
+#header-note > .tack{
+    position: absolute;
+    top: -3px;
+    left: 80px;
 }
 
 /*Main Styling*/
@@ -58,7 +68,7 @@ main{
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin-top: 45px;
+    margin-top: 50px;
     margin-bottom: 55px;
 }
 
@@ -70,10 +80,18 @@ main h2{
 
 #gridpaper{
     background-color: #fff;
+    background-image: url(images/dot-grid.png);
     width: 300px;
     height: 400px;
     padding: 20px;
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+    position: relative;
+}
+
+#gridpaper > .tack{
+    position: absolute;
+    top: -3px;
+    left: 150px;
 }
 
 #card{
@@ -82,6 +100,13 @@ main h2{
     height: 400px;
     padding: 16px;
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+    position: relative;
+}
+
+#card > .tack{
+    position: absolute;
+    top: -3px;
+    left: 115px;
 }
 
 #postit{
@@ -90,6 +115,13 @@ main h2{
     height: 200px;
     padding: 16px;
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+    position: relative;
+}
+
+#postit >.tack{
+    position: absolute;
+    top: -3px;
+    left: 100px;
 }
 
 /* Unordered Lists Styling */
