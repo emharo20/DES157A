@@ -2,19 +2,23 @@ body{
     background-image: url(images/pin-board-pattern.jpg);
     font-family: Montserrat;
     color: #1f1f1f;
+    max-width: 1200px;
+    margin: auto;
 }
 
-h1, main > h2{
+h1, main > section > h2{
     font-family: Roboto Slab;
 }
 
-
-
-h1{
-    font-size: 4em;
-    margin-top: 30px;
-    margin-bottom: 15px;
+.type-ani p{
+    font-family: Caveat;
+    font-size: 1.8em;
+    text-align: center;
+    margin: 0;
+    margin-top: 35px;
 }
+
+
 
 /* Header Styling */
 #banner{
@@ -25,10 +29,30 @@ h1{
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 40px;
-    margin-left: 45px;
+    margin: auto;
+    margin-top: 30px;
+    box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+    position: relative;
+}
+
+h1{
+    font-size: 3em;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+#header-note{
+    background-color: #ff58c4;
+    width: 200px;
+    height: 120px;
+    position: absolute;
+    right: 230px;
+    top: 100px;
+    transform: rotate(-25deg);
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
 }
 
+/*Main Styling*/
 main{
     margin: auto;
     display: flex;
@@ -41,6 +65,7 @@ main{
 main h2{
     text-decoration: underline;
     text-align: center;
+    margin-top: 30px;
 }
 
 #gridpaper{
@@ -74,6 +99,13 @@ ul li a{
     color: #1f1f1f;
 }
 
+ul li a:hover{
+    font-weight: 600;
+    color: #df0000;
+}
+
+
+
 /* Footer Styling */
 footer{
     background-color: #fff;
@@ -81,11 +113,12 @@ footer{
     max-width: 1000px;
     max-height: 200px;
     padding: 25px;
-    margin-left: auto;
-    margin-right: 45px;
+    margin: auto;
+    margin-bottom: 30px;
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
     display: flex;
     justify-content: space-around;
+    margin-bottom: 30px;
 }
 
 footer > p{
