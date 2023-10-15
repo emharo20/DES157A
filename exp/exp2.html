@@ -11,6 +11,8 @@
         <div></div>
 
         <script>
+            //this code is going to ask the user for a color and then change the background to that color and give a message. The message will depend on whether of not the user inputs anything.
+
             var pickColor = prompt("Pick a color", "");
 
             function backColor(yourColor){
@@ -29,7 +31,7 @@
             var newTag = document.createElement('p');
             newTag.appendChild(backColor(pickColor));
             document.querySelector('div').appendChild(newTag);
-            
+
             document.body.style.backgroundColor = pickColor;
         </script>
     </body>
