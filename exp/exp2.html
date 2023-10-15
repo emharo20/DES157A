@@ -8,7 +8,29 @@
 
     <body>
         <h1>Experiment 2</h1>
+        <div></div>
 
-        <script></script>
+        <script>
+            var pickColor = prompt("Pick a color", "");
+
+            function backColor(yourColor){
+                var message;
+                
+                if(yourColor == null || yourColor == ''){
+                    message = document.createTextNode(`Sorry, you did not select a color`);
+                }
+                else{
+                    message = document.createTextNode(`Here is your ${yourColor} background`);
+                }
+                
+                return message;                
+            }
+
+            var newTag = document.createElement('p');
+            newTag.appendChild(backColor(pickColor));
+            document.querySelector('div').appendChild(newTag);
+            
+            document.body.style.backgroundColor = pickColor;
+        </script>
     </body>
 </html>
