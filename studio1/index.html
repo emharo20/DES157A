@@ -5,51 +5,63 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mad Libs 2.0</title>
 
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
         <link href="styles.css" rel="stylesheet">
         <script src="script.js" defer></script>
     </head>
 
     <body>
-        <h1>Mad Libs 2.0</h1>
-
+        <header>
+            <h1>Mad Libs 2.0</h1>
+        </header>
+        
         <main>
             <form id="myform">
-                <lable for="namePlace">Name of a Place</lable>
-                <input type="text" id="namePlace" name="namePlace" placeholder="Hollister">
+                <div id="sign1">
+                    <lable for="namePlace">Name of a Place</lable>
+                    <input type="text" id="namePlace" placeholder="Hollister">
 
-                <lable for="number">Number</lable>
-                <input type="text" id="number" name="number" placeholder="18">
+                    <lable for="number">Number</lable>
+                    <input type="text" id="number" placeholder="18">
 
-                <lable for="name">Name</lable>
-                <input type="text" id="name" name="name" placeholder="Sally">
+                    <lable for="name">Name</lable>
+                    <input type="text" id="name" placeholder="Sally">
 
-                <lable for="transport">Mode of Transportation</lable>
-                <input type="text" id="transport" name="transport" placeholder="Bike">
+                    <lable for="transport">Mode of Transportation</lable>
+                    <input type="text" id="transport" placeholder="Bike">
 
-                <lable for="place1">Place</lable>
-                <input type="text" id="place1" name="place1" placeholder="Park">
+                    <lable for="place1">Place</lable>
+                    <input type="text" id="place1" placeholder="Park">
+                </div>
 
-                <lable for="verb">Verb</lable>
-                <input type="text" id="verb" name="verb" placeholder="Read">
+                <div id="sign2">
+                    <lable for="verb">Verb</lable>
+                    <input type="text" id="verb" placeholder="Read">
 
-                <lable for="animal">Animal</lable>
-                <input type="text" id="animal" name="animal" placeholder="Dog">
+                    <lable for="animal">Animal</lable>
+                    <input type="text" id="animal" placeholder="Dog">
 
-                <lable for="adjective">Adjective</lable>
-                <input type="text" id="adjective" name="adjective" placeholder="Peaceful">
+                    <lable for="adjective">Adjective</lable>
+                    <input type="text" id="adjective" placeholder="Peaceful">
 
-                <lable for="noun">Noun</lable>
-                <input type="text" id="noun" name="noun" placeholder="Bags">
+                    <lable for="noun">Noun</lable>
+                    <input type="text" id="noun" placeholder="Bags">
 
-                <lable for="place2">Place</lable>
-                <input type="text" id="place2" name="place2" placeholder="College">
+                    <lable for="place2">Place</lable>
+                    <input type="text" id="place2" placeholder="College">
 
-                <input type="submit" value="Read Your Story!">
+                    <input type="submit" value="Read Your Story!">
+                </div>
             </form>
         </main>
 
+        
         <section id="overlay" class="hidden">
-            <article id="madlibs"></article>
+            <div id="green-sign">
+                <article id="madlibs"></article>
+            </div>
         </section>
     </body>
 </html>
