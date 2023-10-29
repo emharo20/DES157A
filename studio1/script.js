@@ -22,43 +22,43 @@
         let myText = "";
 
         if(namePlace == ""){
-            myText = "Please provide a place name."
+            myText = '<p>Please provide a place.</p> <button class="close">close</button>';
             document.querySelector('#namePlace').focus();
         }
         else if(number == ""){
-            myText = "Please provide a number."
+            myText = '<p>Please provide a number.</p> <button class="close">close</button>';
             document.querySelector('#number').focus();
         }
         else if(name == ""){
-            myText = "Please provide an name."
+            myText = '<p>Please provide a name.</p> <button class="close">close</button>';
             document.querySelector('#name').focus();
         }
         else if(transport == ""){
-            myText = "Please provide a mode of transportation."
+            myText = '<p>Please provide a mode of transportation.</p> <button class="close">close</button>';
             document.querySelector('#transport').focus();
         }
         else if(place1 == ""){
-            myText = "Please provide a place."
+            myText = '<p>Please provide a place.</p> <button class="close">close</button>';
             document.querySelector('#place1').focus();
         }
         else if(verb == ""){
-            myText = "Please provide a verb."
+            myText = '<p>Please provide a verb.</p> <button class="close">close</button>';
             document.querySelector('#verb').focus();
         }
         else if(animal == ""){
-            myText = "Please provide an animal."
+            myText = '<p>Please provide an animal.</p> <button class="close">close</button>';
             document.querySelector('#verb').focus();
         }
         else if(adjective == ""){
-            myText = "Please provide an adjective."
+            myText = '<p>Please provide an adjective.</p> <button class="close">close</button>';
             document.querySelector('#animal').focus();
         }
         else if(noun == ""){
-            myText = "Please provide a noun."
+            myText = '<p>Please provide a noun.</p> <button class="close">close</button>';
             document.querySelector('#noun').focus();
         }
         else if(place2 == ""){
-            myText = "Please provide a second place."
+            myText = '<p>Please provide a second place.</p> <button class="close">close</button>';
             document.querySelector('#place2').focus();
         }
         else{

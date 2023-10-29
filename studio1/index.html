@@ -14,12 +14,17 @@
 
     <body>
         <header>
-            <h1>Mad Libs 2.0</h1>
+            <div id="cloud1"></div>
+            <div id="cloud2"></div>
+            <div id="cloud3"></div>
         </header>
         
         <main>
+            <div id="pole1"></div>
+            <div id="pole2"></div>
             <form id="myform">
-                <div id="sign1">
+                <div class="sign" id="sign2">
+                    <h1>Mad Libs 2.0</h1>
                     <lable for="namePlace">Name of a Place</lable>
                     <input type="text" id="namePlace" placeholder="Hollister">
 
@@ -36,7 +41,7 @@
                     <input type="text" id="place1" placeholder="Park">
                 </div>
 
-                <div id="sign2">
+                <div class="sign" id="sign2">
                     <lable for="verb">Verb</lable>
                     <input type="text" id="verb" placeholder="Read">
 
@@ -59,6 +64,7 @@
 
         
         <section id="overlay" class="hidden">
+            <div id="scafholding"></div>
             <div id="green-sign">
                 <article id="madlibs"></article>
             </div>
