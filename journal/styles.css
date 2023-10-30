@@ -36,7 +36,7 @@ header{
     height: 250px;
     padding: 16px;
     box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
-    position: fixed;
+    position: relative;
 }
 
 .paper{
