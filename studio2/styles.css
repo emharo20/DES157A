@@ -1,0 +1,35 @@
+div{
+    background-color: rgba(255, 0, 0, 0.557);
+}
+
+#container {
+    width: 600px;
+    height: 789px;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+}
+
+#container div {
+    position: absolute;
+}
+
+#container img {
+    display: block;
+    position: absolute;
+    transition: all 3s ease;
+}
+
+#shadow{
+    width: 400px;
+    height: 190px;
+    transform: rotate(-48deg);
+    top: 450px;
+    left: 110px;
+}
+
+.start {
+    width: 800px;
+    left: 0;
+    top: 0;
+}
