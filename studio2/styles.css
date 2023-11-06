@@ -1,10 +1,14 @@
-div{
+/* div{
     background-color: rgba(255, 0, 0, 0.557);
+} */
+
+body{
+    background-color: #003a7d
 }
 
 #container {
-    width: 600px;
-    height: 789px;
+    width: 532px;
+    height: 700px;
     overflow: hidden;
     position: relative;
     margin: auto;
@@ -21,15 +25,21 @@ div{
 }
 
 #shadow{
-    width: 400px;
-    height: 190px;
-    transform: rotate(-48deg);
-    top: 450px;
-    left: 110px;
+    width: 360px;
+    height: 180px;
+    transform: rotate(-53deg);
+    top: 390px;
+    left: 100px;
 }
 
 .start {
-    width: 800px;
+    width: 532px;
     left: 0;
     top: 0;
+}
+
+.shadow{
+    width: 800px;
+    top: -390px;
+    left: -153px;
 }
