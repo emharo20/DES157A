@@ -17,6 +17,8 @@
 
         switch(thisCorner){
             case 'shadow': theImg.className = 'shadow'; break;
+            case 'flyaways': theImg.className = 'flyaways'; break;
+            case 'current': theImg.className = 'current'; break;
         }
     }
 })();

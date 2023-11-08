@@ -32,6 +32,22 @@ body{
     left: 100px;
 }
 
+#flyaways{
+    width: 305px;
+    height: 315px;
+    top: 50px;
+    left: 80px;
+    z-index: 1;
+}
+
+#current{
+    width: 124px;
+    height: 268px;
+    top: 105px;
+    left: 325px;
+    z-index: 2;
+}
+
 .start {
     width: 532px;
     left: 0;
@@ -40,6 +56,18 @@ body{
 
 .shadow{
     width: 800px;
-    top: -390px;
+    top: -460px;
     left: -153px;
+}
+
+.flyaways{
+    width: 900px;
+    top: -90px;
+    left: -120px;
+}
+
+.current{
+    width: 990px;
+    top: -140px;
+    left: -440px;
 }
