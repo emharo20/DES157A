@@ -1,43 +1,52 @@
 (function(){
     'use strict';
 
+    //declaring all my variables needed for the zooming in & out
     const hotSpots = document.querySelectorAll('#container div');
     const theImg = document.querySelector('div img');
     const theContainer = document.querySelector('#container');
     const text = document.querySelector('#explain');
-    const myImages = ['image1.jpg', 'image2.jpg', 'image3.jpg','image4.jpg','image5.jpg','image6.jpg','image7.jpg','image8.jpg','image9.jpg','image10.jpg','image11.jpg'];
 
+    //declaring all variables needed for the slideshow
+    const myImages = ['image1.jpg', 'image2.jpg', 'image3.jpg','image4.jpg','image5.jpg','image6.jpg','image7.jpg','image8.jpg','image9.jpg','image10.jpg','image11.jpg'];
     let currentImg = 0;
     const slide = document.querySelector('#myimage');
     const myDiv = document.querySelector('#slideshow');
-    let startSlideshow = setInterval(nextPhoto, 4000);
+    let startSlideshow = setInterval(nextPhoto, 4000);   //runs slideshow with time variable
 
-   function nextPhoto(){
-        currentImg++;
-        
+    //function that changes image for slideshow
+    function nextPhoto(){
+        currentImg++;   //increases this variable for myImages array
+        //loops slideshow once final image is placed
         if(currentImg > myImages.length-1){
             currentImg = 0;
         };
-
-        slide.src = `images/${myImages[currentImg]}`;
+        slide.src = `images/${myImages[currentImg]}`;   //changes HTML src code directly
     };
 
+    // stops slideshow when mouse hovers over picture
     myDiv.addEventListener('mouseover', function(){
         clearInterval(startSlideshow);
     });
 
+    //re-runs slideshow when mouse is off the picture
     myDiv.addEventListener('mouseout', function(){
         startSlideshow = setInterval(nextPhoto, 4000);
     });
 
+
+
+    //SCRIPT FOR ZOOMING IN & OUT OF MAIN PHOTO
+    //event listener for each "hot spot" zooming div
     hotSpots.forEach(function(eachSpot){
         eachSpot.addEventListener('click', zoomPhoto);
-        
     });
 
+    //function that zooms photo in & out and changes text
     function zoomPhoto(event){
-        const thisCorner = event.target.id;
+        const thisCorner = event.target.id;   //targets specific div id to than know which case to follow
 
+        //changes class name to zoom in and changes innerHTML
         switch(thisCorner){
             case 'shadow': 
                 theImg.className = 'shadow';
@@ -53,14 +62,16 @@
                 break;
         }
 
+        //creates and places new overlay on top of the overall image and hot spots
         const overlay = document.createElement('div');
         overlay.className = 'overlay';
         theContainer.append(overlay);
 
+        //event listener that zooms out with another click and changes to original text
         overlay.addEventListener('click', function(){
             theImg.className = "start";
             text.innerHTML = '<h2>Overview</h2> <p>On October 16, 2020, I lost a very close family member: my grandpa, Vidal Haro. He was one of the most important people to me, and continues to be although he is no longer here. From begining to end, he was always there for me and family and was someone no one could replace. In my eyes, he was the greatest grandpa in world and I loved him with my entire heart.</p> <p>A couple months after his death, I got an assignment for DES 15 to create a piece that showed a transformation colored by the color wheel, and I created what I now call "In Loving Memory." It is a piece inspired by my relationship with my grandpa, showing both our past and our present relationship. It is a piece that is full of meaning in every corner and I would like to explain what each section signifies.</p>';
-            overlay.remove();
+            overlay.remove();   //removes overlay after its clicked
         });
     };
 })();
