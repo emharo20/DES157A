@@ -7,15 +7,26 @@ body{
     font-family: Lora;
     color: #f4f4f4;
     display: flex;
-    justify-content: left;
-    gap: 3em;
+    justify-content: center;
+    margin: auto;
+}
+
+#text{
+    margin: 40px;
+    width: 580px;
+}
+
+h1{
+    font-size: 3em;
+    margin: 40px;
+    text-align: center;
 }
 
 
 /* Zoom-In & Out Styling for JS*/
 #container {
-    width: 532px;
-    height: 700px;
+    width: 456px;
+    height: 600px;
     overflow: hidden;
     position: relative;
     margin: 2.5em;
@@ -32,51 +43,51 @@ body{
 }
 
 #shadow{
-    width: 360px;
-    height: 180px;
+    width: 320px;
+    height: 160px;
     transform: rotate(-53deg);
-    top: 390px;
-    left: 100px;
+    top: 330px;
+    left: 82px;
 }
 
 #flyaways{
-    width: 305px;
-    height: 315px;
-    top: 50px;
-    left: 80px;
+    width: 254px;
+    height: 264px;
+    top: 46px;
+    left: 70px;
     z-index: 1;
 }
 
 #current{
-    width: 124px;
-    height: 268px;
-    top: 105px;
-    left: 325px;
+    width: 101px;
+    height: 230px;
+    top: 90px;
+    left: 284px;
     z-index: 2;
 }
 
 .start {
-    width: 532px;
+    width: 456px;
     left: 0;
     top: 0;
 }
 
 .shadow{
-    width: 800px;
+    width: 720px;
     top: -460px;
-    left: -153px;
+    left: -160px;
 }
 
 .flyaways{
-    width: 900px;
-    top: -90px;
-    left: -120px;
+    width: 805px;
+    top: -60px;
+    left: -123px;
 }
 
 .current{
     width: 990px;
-    top: -140px;
-    left: -440px;
+    top: -155px;
+    left: -455px;
 }
 
 .overlay {
