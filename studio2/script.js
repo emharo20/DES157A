@@ -74,4 +74,6 @@
             overlay.remove();   //removes overlay after its clicked
         });
     };
+
+    console.log("reading js");
 })();
