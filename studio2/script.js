@@ -5,6 +5,30 @@
     const theImg = document.querySelector('div img');
     const theContainer = document.querySelector('#container');
     const text = document.querySelector('#explain');
+    const myImages = ['image1.jpg', 'image2.jpg', 'image3.jpg','image4.jpg','image5.jpg','image6.jpg','image7.jpg','image8.jpg','image9.jpg','image10.jpg','image11.jpg'];
+
+    let currentImg = 0;
+    const slide = document.querySelector('#myimage');
+    const myDiv = document.querySelector('#slideshow');
+    let startSlideshow = setInterval(nextPhoto, 4000);
+
+   function nextPhoto(){
+        currentImg++;
+        
+        if(currentImg > myImages.length-1){
+            currentImg = 0;
+        };
+
+        slide.src = `images/${myImages[currentImg]}`;
+    };
+
+    myDiv.addEventListener('mouseover', function(){
+        clearInterval(startSlideshow);
+    });
+
+    myDiv.addEventListener('mouseout', function(){
+        startSlideshow = setInterval(nextPhoto, 4000);
+    });
 
     hotSpots.forEach(function(eachSpot){
         eachSpot.addEventListener('click', zoomPhoto);
@@ -35,7 +59,7 @@
 
         overlay.addEventListener('click', function(){
             theImg.className = "start";
-            text.innerHTML = '<h2>Overview</h2> <p>On October 16, 2020, I lost a very close family member: my grandpa, Vidal Haro. He was one of the most important people to me, and continues to be although he is no longer here. From begining to end, he was always there for me and family and was someone no one could replace. In my eyes, he was the greatest grandpa in world and I loved him with my entire heart.</p> <p>A couple months after his death, I got an assignment for DES 15 to create a piece that showed a transformation colored by the color wheel, and I created what I now call "In Loving Memory." It is a piece inspired by my relationship with my grandpa, showing both our past and our present relationship. It is a piece that is full of meaning in every corner and I would like to explain what each section signifies.</p> <h3>Click on the photo to see its explanation</h3>';
+            text.innerHTML = '<h2>Overview</h2> <p>On October 16, 2020, I lost a very close family member: my grandpa, Vidal Haro. He was one of the most important people to me, and continues to be although he is no longer here. From begining to end, he was always there for me and family and was someone no one could replace. In my eyes, he was the greatest grandpa in world and I loved him with my entire heart.</p> <p>A couple months after his death, I got an assignment for DES 15 to create a piece that showed a transformation colored by the color wheel, and I created what I now call "In Loving Memory." It is a piece inspired by my relationship with my grandpa, showing both our past and our present relationship. It is a piece that is full of meaning in every corner and I would like to explain what each section signifies.</p>';
             overlay.remove();
         });
     };
