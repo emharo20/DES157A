@@ -73,7 +73,7 @@
             }
             else if(gameData.stand < gameData.players.length){
                 gameData.index ? (gameData.index = 0) : (gameData.index = 1);
-                setUpTurn();
+                setUpTurn();   
             }
         });
     };
@@ -85,7 +85,12 @@
             value = 10;
         }
         else if(gameData.deck[number] == "A"){
-            value = valueA();
+            if(gameData.score[gameData.index] < gameData.gameEnd){
+                value = 11;
+            }
+            else{
+                value = 1;
+            }
         }
         else {
             value = parseInt(gameData.deck[number]);
@@ -94,20 +99,19 @@
         return value;
     }
 
-    function valueA(){
+    /* function valueA(){
         let a = 0;
         ace.innerHTML = '<p>Value for A: <button id="one">1</button> or <button id="eleven">11</button></p>' 
         document.querySelector('#one').addEventListener('click', function(){
             a = 1;
             ace.innerHTML = '';
-            return a;
         });
         document.querySelector('#eleven').addEventListener('click', function(){
             a = 11;
             ace.innerHTML = '';
-            return a;
         });
-    }
+        return a;
+    } */
 
     function hit(){
         gameData.hitCard.push(Math.floor(Math.random()*13));
@@ -126,9 +130,12 @@
     }
     
     function checkWinningCondition(){
+        if(gameData.score[gameData.index[0]] && gameData.score[gameData.index[1]] <= gameData.gameEnd){
+            game.innerHTML = `${Math.max(gameData.players[gameData.index[0]],gameData.players[gameData.index[1]])} Wins!`;
+        }
+
         scorePlace.innerHTML = `<p>${gameData.players[0]} score: <strong>${gameData.score[0]}</strong></p>`;
         scorePlace.innerHTML += `<p>${gameData.players[1]} score: <strong>${gameData.score[1]}</strong></p>`;
-        game.innerHTML = '';
         actionArea.innerHTML = '';
         document.querySelector('#quit').innerHTML = "Start a new game";
 
