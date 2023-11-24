@@ -41,40 +41,33 @@
     };
 
     function play21(){
-        gameData.upCard = Math.floor(Math.random()*0);
+        gameData.upCard = Math.floor(Math.random()*13);
         gameData.downCard = Math.floor(Math.random()*13);
         gameData.value[0] = cardValues(gameData.upCard);
         gameData.value[1] = cardValues(gameData.downCard);
         gameData.score[gameData.index] = gameData.value[0] + gameData.value[1];
         
-        game.innerHTML = `<p>Cards Recieved: ${gameData.deck[gameData.upCard]} ${gameData.deck[gameData.downCard]}</p>`;
+        game.innerHTML = `<p>Cards Recieved:</p> <img src = "images/${gameData.deck[gameData.upCard]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card">`;
         scorePlace.innerHTML = `<p>Total Points: ${gameData.score[gameData.index]}</p>`;
 
         actionArea.innerHTML = '<button id="hit">Hit</button> <button id="stand">stand</button>';
 
         document.querySelector('#hit').addEventListener('click', function(){
             hit();
-            game.innerHTML = `<p>Cards Recieved: ${gameData.deck[gameData.upCard]} ${gameData.deck[gameData.downCard]}</p>`;
-            game.innerHTML += `<p>Added Cards: ${hitSuit()}</p>`;
+            game.innerHTML = `<p>Cards Recieved:</p> <img src = "images/${gameData.deck[gameData.upCard]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card">`;
+            game.innerHTML += `<p>Added Cards:</p> ${hitSuit()}`;
             scorePlace.innerHTML = `<p>Total Points: ${gameData.score[gameData.index]}</p>`;
             clickCount++;
 
-            if(gameData.score[gameData.index] > gameData.gameEnd){
-                gameData.stand++;
-                gameData.index ? (gameData.index = 0) : (gameData.index = 1);
-                game.innerHTML += `<p>Sorry! You went over 21.</p>`;
-                setTimeout(setUpTurn, 3000);
+            if (gameData.score[gameData.index] > gameData.gameEnd){
+                game.innerHTML += '<p>Sorry! You went over 21.</p>'
+                scorePlace.innerHTML = `<p>Total Points: ${gameData.score[gameData.index]}</p>`;
+                setTimeout(standState, 3000);
             }
         });
+
         document.querySelector('#stand').addEventListener('click', function(){
-            gameData.stand++;
-            if(gameData.stand === gameData.players.length){
-                checkWinningCondition();
-            }
-            else if(gameData.stand < gameData.players.length){
-                gameData.index ? (gameData.index = 0) : (gameData.index = 1);
-                setUpTurn();   
-            }
+            standState();
         });
     };
 
@@ -85,12 +78,8 @@
             value = 10;
         }
         else if(gameData.deck[number] == "A"){
-            if(gameData.score[gameData.index] < gameData.gameEnd){
-                value = 11;
-            }
-            else{
-                value = 1;
-            }
+            //value = valueA();
+            value = 1;
         }
         else {
             value = parseInt(gameData.deck[number]);
@@ -99,19 +88,16 @@
         return value;
     }
 
-    /* function valueA(){
+    function valueA(){
         let a = 0;
-        ace.innerHTML = '<p>Value for A: <button id="one">1</button> or <button id="eleven">11</button></p>' 
-        document.querySelector('#one').addEventListener('click', function(){
-            a = 1;
-            ace.innerHTML = '';
-        });
-        document.querySelector('#eleven').addEventListener('click', function(){
+        if(gameData.score[gameData.index] < gameData.gameEnd){
             a = 11;
-            ace.innerHTML = '';
-        });
+        }
+        else{
+            a = 1;
+        }
         return a;
-    } */
+    } ;
 
     function hit(){
         gameData.hitCard.push(Math.floor(Math.random()*13));
@@ -120,20 +106,35 @@
     }
 
     function hitSuit(){
-        let hitCardSuit = gameData.deck[gameData.hitCard[0]];
+        let hitCardSuit = `<img src = "images/${gameData.deck[gameData.hitCard[0]]}.svg" alt = "hit card">`;
         if(clickCount > 0){
             for (let i=0; i<clickCount; i++){
-                hitCardSuit = `${hitCardSuit}, ${gameData.deck[gameData.hitCard[i+1]]}`
-            }
-        }
+                hitCardSuit = `${hitCardSuit}, <img src = "images/${gameData.deck[gameData.hitCard[i+1]]}.svg" alt = "hit card">`;
+            };
+        };
         return hitCardSuit;
+    }
+
+    function standState(){
+        gameData.stand++;
+            if(gameData.stand === gameData.players.length){
+                checkWinningCondition();
+            }
+            else if(gameData.stand < gameData.players.length){
+                gameData.index ? (gameData.index = 0) : (gameData.index = 1);
+                const b = gameData.hitCard;
+                gameData.hitCard = [];
+                clickCount = 0;
+                setUpTurn();  
+            }
     }
     
     function checkWinningCondition(){
-        if(gameData.score[gameData.index[0]] && gameData.score[gameData.index[1]] <= gameData.gameEnd){
+        /* if(gameData.score[gameData.index[0]] && gameData.score[gameData.index[1]] <= gameData.gameEnd){
             game.innerHTML = `${Math.max(gameData.players[gameData.index[0]],gameData.players[gameData.index[1]])} Wins!`;
-        }
+        } */
 
+        game.innerHTML = "";
         scorePlace.innerHTML = `<p>${gameData.players[0]} score: <strong>${gameData.score[0]}</strong></p>`;
         scorePlace.innerHTML += `<p>${gameData.players[1]} score: <strong>${gameData.score[1]}</strong></p>`;
         actionArea.innerHTML = '';

@@ -1,3 +1,13 @@
 div{
     margin: 25px;
 }
+
+body{
+    font-family: Almarai;
+    background-color: #006000;
+    color: white;
+}
+
+img{
+    width: 200px;
+}
