@@ -1,13 +1,94 @@
-div{
-    margin: 25px;
-}
-
 body{
-    font-family: Almarai;
+    font-family: Barlow;
     background-color: #006000;
     color: white;
 }
 
+h1, h2{
+    font-family: Bigshot One;
+    font-size: 6em;
+    font-weight: 400;
+}
+
 img{
-    width: 100px;
+    width: 150px;
+    /* box-shadow: -26px 42px 81px -46px rgba(0,0,0,0.41); */
+}
+
+#startgame, #homerules, #hit, #stand{
+    font-weight: 600;
+    font-size: 1.55em;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #ffd500;
+    border-radius: 12px;
+    border: none;
+    box-shadow: -26px 42px 81px -46px rgba(0,0,0,0.41);
+}
+
+section{
+    margin: 25px;
+}
+
+#game, #score, #actions, #gamecontrols{
+    margin: auto;
+    width: max-content;
+}
+
+#game{
+    margin-top: 5em;
+}
+
+/* RULES OVERLAY */
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.showing {
+    visibility: visible;
+    opacity: 1;
+}
+
+#overlay{
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    transition-property: opacity, visibility;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+    z-index: 2;
+}
+
+#overlay article{
+    background-color: #ffffff;
+    color: black;
+    border: solid 8px #ffd500;
+    border-radius: 30px;
+    margin: 0;
+    padding: 32px;
+    padding-left: 45px;
+    padding-right: 45px;
+    line-height: 1.5em;
+    width: 900px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+#overlay article > h3{
+    font-family: Bigshot One;
+    font-size: 2em;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
 }

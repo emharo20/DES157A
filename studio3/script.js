@@ -1,5 +1,6 @@
 (function(){
     'use strict';
+    console.log("reading js");
 
     const startGame = document.querySelector('#startgame');
     const gameControl = document.querySelector('#gamecontrol');
@@ -23,7 +24,7 @@
     };
 
     startGame.addEventListener('click', function(){
-        gameControl.innerHTML = '<button id="quit">Wanna Quit?</button>'
+        gameControl.innerHTML = '<button id="quit">Wanna Quit?</button> <button id="rules">Rules</button>'
 
         document.querySelector('#quit').addEventListener('click', function(){
             location.reload();
@@ -32,7 +33,7 @@
     });
 
     function setUpTurn(){
-        game.innerHTML = `Now Playing: ${gameData.players[gameData.index]}`;
+        game.innerHTML = `<h2>Now Playing: ${gameData.players[gameData.index]}</h2>`;
         scorePlace.innerHTML = '';
         actionArea.innerHTML = '';
         setTimeout(play21, 3000);
@@ -50,7 +51,7 @@
         game.innerHTML = `<p>Cards Recieved:</p> <img src = "images/${gameData.deck[gameData.upCard]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card">`;
         scorePlace.innerHTML = `<p>Total Points: ${gameData.score[gameData.index]}</p>`;
 
-        actionArea.innerHTML = '<button id="hit">Hit</button> <button id="stand">stand</button>';
+        actionArea.innerHTML = '<button id="hit">HIT</button> <button id="stand">STAND</button>';
 
         document.querySelector('#hit').addEventListener('click', function(){
             hit();
@@ -77,13 +78,7 @@
             value = 10;
         }
         else if(gameData.deck[number] == "A"){
-            //value = valueA();
-            if(gameData.score[gameData.index] < 11){
-                value = 11;
-            }
-            else{
-                value = 1;
-            }
+            (gameData.score[gameData.index] < 11) ? (value = 11) : (value = 1);
         }
         else {
             value = parseInt(gameData.deck[number]);
@@ -143,4 +138,22 @@
         actionArea.innerHTML = '';
         document.querySelector('#quit').innerHTML = "Start a new game";
     };
+
+    document.querySelector('#homerules').addEventListener('click',function(){
+        document.querySelector('#overlay').className = "showing";
+    });
+    document.querySelector('#rules').addEventListener('click',function(){
+        document.querySelector('#overlay').className = "showing";
+    });
+
+    document.querySelector('.close').addEventListener('click',function(event){
+        event.preventDefault();
+        document.querySelector('#overlay').className = "hidden";        
+    });
+
+    document.addEventListener('keydown',function(event){
+        if(event.key === 'Escape'){
+            document.querySelector('#overlay').className = "hidden";
+        }        
+    });
 })();
