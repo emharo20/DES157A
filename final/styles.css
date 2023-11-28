@@ -1,0 +1,44 @@
+body{
+    background-image: url(../images/pin-board-pattern.jpg);
+    font-family: Montserrat;
+    color: #1f1f1f;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h1, h2{
+    font-family: Roboto Slab;
+}
+
+h1{
+    font-size: 2.5em;
+}
+
+p{
+    line-height: 1.75em;
+}
+
+header{
+    background-color: #fff;
+    background-image: url(../images/lined-paper.png);
+    width: max-content;
+    max-height: 250px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: auto;
+    margin-top: 30px;
+    box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+}
+
+.paper{
+    background-color: #fff;
+    width: 800px;
+    max-height: fit-content;
+    padding: 45px;
+    box-shadow: -9px 10px 21px -4px rgba(0,0,0,0.35);
+    margin: auto;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
