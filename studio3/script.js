@@ -11,6 +11,13 @@
 
     let clickCount = 0; // variable to count clicks for hit button
 
+    /* VARIABLES FOR SOUND AFFECTS */
+    const ding = new Audio('sounds/ding.mp3');
+    const flipcard = new Audio('sounds/flipcard.mp3');
+    const hooray = new Audio('sounds/hooray.mp3');
+    const negative = new Audio('sounds/negative.mp3');
+    const beep = new Audio('sounds/stand.mp3');
+
     /* DEFINING VARIABLES NEEDED FOR THE GAME */
     const gameData = {
         deck: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
@@ -28,17 +35,20 @@
 
     /* CHANGES GAME CONTROL BUTTONS AND STARTS THE GAME */
     startGame.addEventListener('click', function(){
+        ding.play();  //plays sound affect
+
         /* adds quit button and changes rules button id name */
         gameControl.innerHTML = '<button id="quit">Wanna Quit?</button> <button id="rules">Rules</button>'
 
         /* event listener to display the rules of blackjack */
         document.querySelector('#rules').addEventListener('click',function(){
+            beep.play();  //plays sound affect
             document.querySelector('#overlay').className = "showing";
         });
 
         /* reloads page and ends the current game */
         document.querySelector('#quit').addEventListener('click', function(){
-            location.reload();
+            location.reload();  //reloads page
         });
 
         setUpTurn(); //calls function
@@ -76,6 +86,8 @@
 
         /* EVENT LISTERNER FOR HIT BUTTON */
         document.querySelector('#hit').addEventListener('click', function(){
+            flipcard.play();  //plays sound affect
+
             hit(); //calls function
 
             game.innerHTML = `<div><h3>Cards Recieved:</h3> <img src = "images/${gameData.deck[gameData.upCard]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card"></div>`; //refreshes the game for each hit
@@ -88,73 +100,81 @@
 
             /* CONDITION FOR WHEN PLAYER GOES OVER 21 */
             if (gameData.score[gameData.index] > gameData.gameEnd){
+                negative.play();  //plays sound affect
                 scorePlace.innerHTML = '<h3>Sorry! You went over 21.</h3>' //explains why game stoped
                 scorePlace.innerHTML += `<h3>Total Points: ${gameData.score[gameData.index]}</h3>`;  //displays their score
-                actionArea.innerHTML = '';
-                setTimeout(standState, 3000);
-                console.log('busted stand');
+                actionArea.innerHTML = '';  //clears action section so players can't hit or stand
+                setTimeout(standState, 3000);  // runs function but gives time for players to prepare
             };
         });
 
+        /* EVENT LISTENER FOR STAND BUTTON */
         document.querySelector('#stand').addEventListener('click', function(){
-            console.log('hitting stand');
-            standState();
+            beep.play();  //plays sound effect
+            standState(); //calls function
         });
     };
 
+    /* FUNCTION THATS GIVES CARDS THEIR VALUE */
+                         //needs a variable to be entered into the function
     function cardValues(number){
-        let value = 0;
+        let value = 0; //variable that will store the value
+
         if(gameData.deck[number] == "K" || gameData.deck[number] == "Q" || gameData.deck[number] == "J"){
-            value = 10;
+            value = 10; //condition for K, Q, J cards
         }
         else if(gameData.deck[number] == "A"){
-            (gameData.score[gameData.index] < 11) ? (value = 11) : (value = 1);
+            (gameData.score[gameData.index] < 11) ? (value = 11) : (value = 1);  //condition for A card with a condition that decides whether the value is 11 or 1
         }
         else {
-            value = parseInt(gameData.deck[number]);
+            value = parseInt(gameData.deck[number]); // condition for all face value cards that converts their value from string to int
         };
-        return value;
+
+        return value; //returns the value
     };
 
+    /* FUNCTION THAT GENERATES A NEW HIT CARD */
     function hit(){
-        gameData.hitCard.push(Math.floor(Math.random()*13));
-        gameData.hitValue = cardValues(gameData.hitCard[clickCount]);
-        gameData.score[gameData.index] = gameData.score[gameData.index] + gameData.hitValue;
+        gameData.hitCard.push(Math.floor(Math.random()*13));  //pushes new generated card into the hitCard array
+        gameData.hitValue = cardValues(gameData.hitCard[clickCount]); //generates the value for the most recent generated card
+        gameData.score[gameData.index] = gameData.score[gameData.index] + gameData.hitValue; //adds the new value to the player's current score
     };
 
+    /* FUNCTION THAT DISPLAYS THE NEW CARDS */
     function hitSuit(){
-        let hitCardSuit = `<img src = "images/${gameData.deck[gameData.hitCard[0]]}.svg" alt = "hit card ${clickCount + 1}">`;
+        let hitCardSuit = `<img src = "images/${gameData.deck[gameData.hitCard[0]]}.svg" alt = "hit card ${clickCount + 1}">`;  //variable that is assigned the first card of the hitCard array
+
+        //condition that allows all the cards to be displayed together
         if(clickCount > 0){
             for (let i=0; i<clickCount; i++){
-                hitCardSuit = `${hitCardSuit} <img src = "images/${gameData.deck[gameData.hitCard[i+1]]}.svg" alt = "hit card ${clickCount + 1}">`;
+                hitCardSuit = `${hitCardSuit} <img src = "images/${gameData.deck[gameData.hitCard[i+1]]}.svg" alt = "hit card ${clickCount + 1}">`; //adds a card every time the player clicks hit
             };
         };
-        return hitCardSuit;
+
+        return hitCardSuit;  //returns the hit card images
     };
 
+    /* FUNCTION FOR WHEN PLAYERS STAND */
     function standState(){
-        console.log('stand function');
-        gameData.stand++;
+        gameData.stand++;  //increases stand value
             if(gameData.stand === gameData.players.length){
-                console.log('winning stand');
                 checkWinningCondition();
             }
             else if(gameData.stand < gameData.players.length){
                 gameData.index ? (gameData.index = 0) : (gameData.index = 1);
                 gameData.hitCard = [];
                 clickCount = 0;
-                console.log('new turn stand');
                 setUpTurn();  
             };
     };
     
     function checkWinningCondition(){
         if(gameData.score[0] > gameData.gameEnd && gameData.score[1] > gameData.gameEnd){
+            negative.play();  //plays sound affect
             game.innerHTML = `<h2>Both Busted</h2>`
         }
         else{
             let winner = Math.max(gameData.score[0], gameData.score[1]);
-            console.log(winner);
 
             if(winner <= gameData.gameEnd){
                 if (gameData.score[0] == gameData.score[1]){
@@ -170,6 +190,8 @@
 
                 (winner == gameData.score[0]) ? (game.innerHTML = `<h2>${gameData.players[0]} Wins!</h2>`) : (game.innerHTML = `<h2>${gameData.players[1]} Wins!</h2>`)
             }
+
+            hooray.play();  //plays sound affect
         };
         
         scorePlace.innerHTML = `<p>${gameData.players[0]} score: <strong>${gameData.score[0]}</strong></p>`;
@@ -179,16 +201,19 @@
     };
 
     document.querySelector('#homerules').addEventListener('click',function(){
+        beep.play();  //plays sound affect
         document.querySelector('#overlay').className = "showing";
     });
 
     document.querySelector('#close').addEventListener('click',function(event){
         event.preventDefault();
+        beep.play();  //plays sound affect
         document.querySelector('#overlay').className = "hidden";        
     });
 
     document.addEventListener('keydown',function(event){
         if(event.key === 'Escape'){
+            beep.play();  //plays sound affect
             document.querySelector('#overlay').className = "hidden";
         }        
     });
