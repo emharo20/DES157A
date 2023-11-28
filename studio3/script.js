@@ -90,11 +90,14 @@
             if (gameData.score[gameData.index] > gameData.gameEnd){
                 scorePlace.innerHTML = '<h3>Sorry! You went over 21.</h3>' //explains why game stoped
                 scorePlace.innerHTML += `<h3>Total Points: ${gameData.score[gameData.index]}</h3>`;  //displays their score
+                actionArea.innerHTML = '';
                 setTimeout(standState, 3000);
+                console.log('busted stand');
             };
         });
 
         document.querySelector('#stand').addEventListener('click', function(){
+            console.log('hitting stand');
             standState();
         });
     };
@@ -130,36 +133,45 @@
     };
 
     function standState(){
+        console.log('stand function');
         gameData.stand++;
             if(gameData.stand === gameData.players.length){
+                console.log('winning stand');
                 checkWinningCondition();
             }
             else if(gameData.stand < gameData.players.length){
                 gameData.index ? (gameData.index = 0) : (gameData.index = 1);
                 gameData.hitCard = [];
                 clickCount = 0;
+                console.log('new turn stand');
                 setUpTurn();  
             };
     };
     
     function checkWinningCondition(){
-        if (gameData.score[0] == gameData.score[1]){
-            game.innerHTML = `<h2>It's a Tie</h2>`
-        }
-        else if(gameData.score[0] && gameData.score[1] <= gameData.gameEnd){
-            const winner = Math.max(gameData.score[0], gameData.score[1]);
-
-            (winner == gameData.score[0]) ? (game.innerHTML = `<h2>${gameData.players[0]} Wins!</h2>`) : (game.innerHTML = `<h2>${gameData.players[1]} Wins!</h2>`);
-        }
-        else if(gameData.score[0] || gameData.score[1] > gameData.gameEnd){
-            const winner = Math.min(gameData.score[0], gameData.score[1]);
-
-            (winner == gameData.score[0]) ? (game.innerHTML = `<h2>${gameData.players[0]} Wins!</h2>`) : (game.innerHTML = `<h2>${gameData.players[1]} Wins!</h2>`);
-        }
-        else if(gameData.score[0] && gameData.score[1] > gameData.gameEnd){
+        if(gameData.score[0] > gameData.gameEnd && gameData.score[1] > gameData.gameEnd){
             game.innerHTML = `<h2>Both Busted</h2>`
-        };
+        }
+        else{
+            let winner = Math.max(gameData.score[0], gameData.score[1]);
+            console.log(winner);
 
+            if(winner <= gameData.gameEnd){
+                if (gameData.score[0] == gameData.score[1]){
+                    game.innerHTML = `<h2>It's a Tie</h2>`
+                }
+                else{
+                    (winner == gameData.score[0]) ? (game.innerHTML = `<h2>${gameData.players[0]} Wins!</h2>`) : (game.innerHTML = `<h2>${gameData.players[1]} Wins!</h2>`);
+                }
+            }
+            else{
+                winner = Math.min(gameData.score[0], gameData.score[1]);
+                console.log(winner);
+
+                (winner == gameData.score[0]) ? (game.innerHTML = `<h2>${gameData.players[0]} Wins!</h2>`) : (game.innerHTML = `<h2>${gameData.players[1]} Wins!</h2>`)
+            }
+        };
+        
         scorePlace.innerHTML = `<p>${gameData.players[0]} score: <strong>${gameData.score[0]}</strong></p>`;
         scorePlace.innerHTML += `<p>${gameData.players[1]} score: <strong>${gameData.score[1]}</strong></p>`;
         actionArea.innerHTML = '';
@@ -172,7 +184,6 @@
 
     document.querySelector('#close').addEventListener('click',function(event){
         event.preventDefault();
-        console.log('is this working');
         document.querySelector('#overlay').className = "hidden";        
     });
 
