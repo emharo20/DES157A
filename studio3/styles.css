@@ -10,6 +10,14 @@ h1, h2{
     font-weight: 400;
 }
 
+footer > a{
+    color: #ffffff;
+    font-weight: bold;
+    margin: 2em;
+    position: fixed;
+    bottom: 0;
+}
+
 img{
     width: 150px;
     /* box-shadow: -26px 42px 81px -46px rgba(0,0,0,0.41); */
@@ -84,7 +92,7 @@ img{
     padding-left: 45px;
     padding-right: 45px;
     line-height: 1.5em;
-    width: 900px;
+    width: 650px;
     height: 500px;
     position: absolute;
     top: 50%;
@@ -95,8 +103,29 @@ img{
 
 #overlay article > h3{
     font-family: Bigshot One;
-    font-size: 2em;
+    font-size: 3em;
     font-weight: 400;
     text-align: center;
     margin: 0;
+    margin-bottom: 30px;
+}
+
+#overlay article > p, ul li{
+    font-size: 1.25em;
+    line-height: 1.65em;
+}
+
+#overlay article > ul{
+    margin-bottom: 25px;
+}
+
+#close{
+    display: block;
+    font-weight: 600;
+    margin: auto;
+    padding: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #ffd500;
+    border-radius: 12px;
 }
