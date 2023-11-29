@@ -8,6 +8,7 @@ h1, h2{
     font-family: Bigshot One;
     font-size: 4.25em;
     font-weight: 400;
+    text-align: center;
 }
 
 footer > a{
@@ -19,8 +20,35 @@ footer > a{
 }
 
 img{
-    width: 150px;
+    width: 130px;
 }
+
+#startgame, #homerules, #hit, #stand{
+    font-weight: 600;
+    font-size: 1.35em;
+    color: black;
+    margin: 15px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #ffd500;
+    border-radius: 12px;
+}
+
+#quit, #rules{
+    color: black;
+    font-size: 1.25em;
+    margin: 15px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#game, #score, #actions, #gamecontrol{
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-top: 25px;
+}
+
 
 /* RULES OVERLAY */
 .hidden {
@@ -85,6 +113,7 @@ img{
 }
 
 #close{
+    color: black;
     display: block;
     font-weight: 600;
     margin: auto;
@@ -95,9 +124,29 @@ img{
     border-radius: 12px;
 }
 
+
+
 @media only screen and (min-width: 600px){
     h1, h2{
         font-size: 6em;
+    }
+
+    img{
+        width: 150px;
+    }
+
+    #startgame, #homerules, #hit, #stand{
+        font-size: 1.55em;
+        margin: 15px;
+        padding: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #game, #score, #actions, #gamecontrol{
+        margin: auto;
+        margin-bottom: 2em;
+        width: max-content;
     }
 
     #game{
@@ -107,99 +156,26 @@ img{
         gap: 30px;
     }
 
-    footer > a{
-    color: #ffffff;
-    font-weight: bold;
-    margin: 2em;
-    position: fixed;
-    bottom: 0;
-}
+    #gamecontrol{
+        margin-top: 25px;
+    }
 
-img{
-    width: 150px;
-}
 
-#startgame, #homerules, #hit, #stand{
-    font-weight: 600;
-    font-size: 1.55em;
-    margin: 15px;
-    padding: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: #ffd500;
-    border-radius: 12px;
-}
+    /* RULES OVERLAY */
+    #overlay article{
+        width: 650px;
+        height: 500px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+    }
 
-#quit, #rules{
-    font-size: 1.25em;
-    margin-top: auto;
-    border-radius: 10px;
-    padding: 10px;
-}
+    #overlay article > h3{
+        font-size: 3em;
+    }
 
-#game, #score, #actions, #gamecontrol{
-    margin: auto;
-    margin-bottom: 2em;
-    width: max-content;
-}
-
-#gamecontrol{
-    margin-top: 25px;
-}
-
-/* RULES OVERLAY */
-.hidden {
-    visibility: hidden;
-    opacity: 0;
-}
-
-.showing {
-    visibility: visible;
-    opacity: 1;
-}
-
-#overlay{
-    position: absolute;
-    margin: 0;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    transition-property: opacity, visibility;
-    transition-duration: 1s;
-    transition-timing-function: ease;
-    z-index: 2;
-}
-
-#overlay article{
-    width: 650px;
-    height: 500px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-}
-
-#overlay article > h3{
-    font-size: 3em;
-}
-
-#overlay article > p, ul li{
-    font-size: 1.25em;
-}
-
-#overlay article > ul{
-    margin-bottom: 25px;
-}
-
-#close{
-    display: block;
-    font-weight: 600;
-    margin: auto;
-    padding: 8px;
-    padding-left: 12px;
-    padding-right: 12px;
-    background-color: #ffd500;
-    border-radius: 12px;
-}
+    #overlay article > p, ul li{
+        font-size: 1.25em;
+    }
 }
