@@ -42,3 +42,9 @@ header{
     margin-top: 32px;
     margin-bottom: 32px;
 }
+
+img{
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+}
