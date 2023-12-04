@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Game On!</title>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Bigshot+One&display=swap" rel="stylesheet">
+
+        <link href="styles.css" rel="stylesheet">
+        <script src="script.js" defer></script>
+    </head>
+    <body>      
+        <div id="game">
+            <h1>Lazy Blackjack</h1>
+        </div>
+
+        <div id="score"></div>
+
+        <div id="actions"></div>
+
+        <div id="gamecontrol">
+            <button id="startgame">Start Game</button> <button id="homerules">Rules</button>
+        </div>
+
+        <div id="overlay" class="hidden">
+            <article>
+                <h3>Blackjack Rules</h3>
+                <p>The goal of this game is to have a hand that is equal to or less than <strong>21</strong>. You are given two cards, one facing up for all players to see and one facing down for only you to see. You sum up the values of your two cards and then have the option to <strong>hit</strong> or <strong>stand</strong>. If you <strong>hit</strong>, you are given another card to add to your value, but be careful. If you go over 21, you automatically lose. If you are satisfied with the hand you have, you can <strong>stand</strong>, which basically means you finish your turn and the next player gets to play (or it ends the game if you are the final player to stand).</p>
+                
+                <ul>
+                    <li><strong>K, Q, J</strong> have a value of <strong>10</strong></li>
+                    <li><strong>A</strong> can have a value of either <strong>11</strong> or <strong>1</strong></li>
+                    <li>Rest of the cards have their face value</li>
+                </ul> 
+
+                <button id="close">close</button>
+            </article>
+        </div>
+
+        <footer><a href="sources.html">Sources</a></footer>
+    </body>
+</html>
