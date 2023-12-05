@@ -16,6 +16,7 @@ h1{
 
 p{
     line-height: 1.75em;
+    margin-bottom: 2.25em;
 }
 
 header{
@@ -46,5 +47,5 @@ header{
 img{
     display: block;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 35px;
 }
