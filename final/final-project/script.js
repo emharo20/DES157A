@@ -94,7 +94,7 @@
         else {
             game.innerHTML = `<div class="dealed"> <h3 class="redplayer">${gameData.players[0]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[0]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play1">played</button> </div>`;
 
-            document.querySelector('#play1').style.backgroundColor = '#959595';
+            document.querySelector('#play1').style.backgroundColor = '#adadad';
             document.querySelector('#play1').style.color = '#484848';
         }
 
@@ -104,25 +104,29 @@
         else {
             game.innerHTML += `<div class="dealed"> <h3 class="blueplayer">${gameData.players[1]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[1]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play2" id="done2">played</button> </div>`;
 
-            document.querySelector('#play2').style.backgroundColor = '#959595';
+            document.querySelector('#play2').style.backgroundColor = '#adadad';
             document.querySelector('#play2').style.color = '#484848';
         } 
 
         document.querySelector('#play1').addEventListener('click', function(){
             if(gameData.score[0] == 0){
                 gameData.index = 0;
+                beep.play();
                 play21();
             }
             else{
+                negative.play();
                 scorePlace.innerHTML = `<p>${gameData.players[0]} has already played</p>`;
             };
         });
         document.querySelector('#play2').addEventListener('click', function(){
             if(gameData.score[1] == 0){
                 gameData.index = 1;
+                beep.play();
                 play21();
             }
             else{
+                negative.play();
                 scorePlace.innerHTML = `<p>${gameData.players[1]} has already played</p>`;
             };
         });
@@ -167,7 +171,7 @@
 
             /* CONDITION FOR WHEN PLAYER GOES OVER 21 */
             if (gameData.score[gameData.index] > gameData.gameEnd){
-                negative.play();  //plays sound affect
+                beep.play();  //plays sound affect
                 scorePlace.innerHTML = '<h3>Sorry! You went over 21.</h3>' //explains why game stoped
                 scorePlace.innerHTML += `<h3>Total Points: ${gameData.score[gameData.index]}</h3>`;  //displays their score
                 actionArea.innerHTML = '';  //clears action section so players can't hit or stand
