@@ -227,6 +227,7 @@ img{
 #overlay article > p, ul li{
     font-size: 1em;
     line-height: 1.65em;
+    text-align: left;
 }
 
 #overlay article > ul{

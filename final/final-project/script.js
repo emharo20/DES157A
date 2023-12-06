@@ -35,6 +35,28 @@
     };
 
 
+    /* SCRIPT FOR RULES OVERLAY */
+    document.querySelector('#homerules').addEventListener('click',function(event){
+        event.preventDefault();
+        beep.play();  //plays sound affect
+        console.log('rules');
+        document.querySelector('#overlay').className = "showing"; //makes rule overlay appear
+    });
+
+    document.querySelector('#close').addEventListener('click',function(event){
+        event.preventDefault();
+        console.log('closing');
+        beep.play();  //plays sound affect
+        document.querySelector('#overlay').className = "hidden";  //makes rule overlay disappear      
+    });
+
+    document.addEventListener('keydown',function(event){
+        if(event.key === 'Escape'){
+            beep.play();  //plays sound affect
+            document.querySelector('#overlay').className = "hidden";  //makes rule overlay disappear
+        }        
+    });
+
 
 
     /* CHANGES GAME CONTROL BUTTONS AND STARTS THE GAME */
@@ -50,15 +72,15 @@
         /* adds quit button and changes rules button id name */
         gameControl.innerHTML = '<button id="quit">Wanna Quit?</button> <button id="rules">Rules</button>'
 
+        /* reloads page and ends the current game */
+        document.querySelector('#quit').addEventListener('click', function(){
+            location.reload();  //reloads page
+        });
+
         /* event listener to display the rules of blackjack */
         document.querySelector('#rules').addEventListener('click',function(){
             beep.play();  //plays sound affect
             document.querySelector('#overlay').className = "showing";
-        });
-
-        /* reloads page and ends the current game */
-        document.querySelector('#quit').addEventListener('click', function(){
-            location.reload();  //reloads page
         });
 
         getFacingCard(); //calls function
@@ -318,25 +340,4 @@
             finalScore.remove();
         });
     };
-
-
-
-    /* SCRIPT FOR RULES OVERLAY */
-    document.querySelector('#homerules').addEventListener('click',function(){
-        beep.play();  //plays sound affect
-        document.querySelector('#overlay').className = "showing"; //makes rule overlay appear
-    });
-
-    document.querySelector('#close').addEventListener('click',function(event){
-        event.preventDefault();
-        beep.play();  //plays sound affect
-        document.querySelector('#overlay').className = "hidden";  //makes rule overlay disappear      
-    });
-
-    document.addEventListener('keydown',function(event){
-        if(event.key === 'Escape'){
-            beep.play();  //plays sound affect
-            document.querySelector('#overlay').className = "hidden";  //makes rule overlay disappear
-        }        
-    });
 })();
