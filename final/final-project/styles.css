@@ -9,7 +9,7 @@ h1, h2{
     font-size: 4.25em;
     font-weight: 400;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 h2{
@@ -26,14 +26,16 @@ p{
 
 #red{
     background-color: #e60000;
+    border: solid 2px #ffffff;
     padding: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 #blue{
     background-color: #0404eb;
+    border: solid 2px #ffffff;
     padding: 20px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 input, label{
@@ -54,17 +56,19 @@ label{
 
 table{
     font-family: Bigshot One;
-    font-weight: 400;
-    font-size: 2em;
+    font-size: 3em;
     text-align: center;
     margin: 30px;
 }
 
+th{
+    font-weight: 400;
+}
+
 td{
     border: solid 3px #ffffff;
-    border-collapse: collapse;
     padding: 20px;
-    font-size: 2em;
+    font-size: 3em;
 }
 
 footer > a{
@@ -91,6 +95,37 @@ img{
     left: 35px;
 }
 
+#corner{
+    position: absolute;
+    font-size: 3em;
+    padding: 15px;
+    top: 13px;
+    left: 13px;
+    margin: 0;
+}
+
+.redplayer{
+    background-color: #e60000;
+    border: solid 4px #ffffff;
+    font-size: 2.25em;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.blueplayer{
+    background-color: #0404eb;
+    border: solid 4px #ffffff;
+    font-size: 2.25em;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.buttons{
+    margin-top: 42px;
+    display: flex;
+    justify-content: center;
+}
+
 #startgame, #homerules, #hit, #stand, #play1, #play2, #newmatch{
     font-weight: 600;
     font-size: 1.35em;
@@ -101,6 +136,10 @@ img{
     padding-right: 15px;
     background-color: #ffd500;
     border-radius: 12px;
+}
+
+#startgame, #homerules{
+    display: block;
 }
 
 #play1, #play2{
@@ -215,14 +254,6 @@ img{
         text-align: center;
     }
 
-    /* table{
-        
-    } */
-    
-    /* td{
-        border: solid 3px #ffffff;
-    } */
-
     img{
         width: 190px;
     }
@@ -233,11 +264,11 @@ img{
     }
 
     .back{
-        top: 130px;
+        top: 165px;
         left: 44px;
     }
 
-    #startgame, #homerules, #hit, #stand{
+    #startgame, #homerules, #hit, #stand, #newmatch{
         font-size: 1.55em;
         margin: 15px;
         padding: 15px;
@@ -260,6 +291,7 @@ img{
 
     .finalscore{
         justify-self: center;
+        align-items: center;
     }
 
     #gamecontrol{

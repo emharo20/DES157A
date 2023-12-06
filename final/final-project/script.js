@@ -88,9 +88,25 @@
         scorePlace.innerHTML = '';
         actionArea.innerHTML = '';
 
-        (gameData.score[0] == 0) ? (game.innerHTML = `<div class="dealed"> <h3 class="redplayer">${gameData.players[0]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[0]]}.svg" alt="up card" class="facecard1"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play1">play</button> </div>`) : (game.innerHTML = `<div class="dealed"> <h3 class="redplayer">${gameData.players[0]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[0]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play1" id="done1">played</button> </div>`);
+        if(gameData.score[0] == 0){
+            game.innerHTML = `<div class="dealed"> <h3 class="redplayer">${gameData.players[0]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[0]]}.svg" alt="up card" class="facecard1"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play1">play</button> </div>`;
+        }
+        else {
+            game.innerHTML = `<div class="dealed"> <h3 class="redplayer">${gameData.players[0]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[0]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play1">played</button> </div>`;
 
-        (gameData.score[1] == 0) ? (game.innerHTML += `<div class="dealed"> <h3 class="blueplayer">${gameData.players[1]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[1]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play2">play</button> </div>`) : (game.innerHTML += `<div class="dealed"> <h3 class="blueplayer">${gameData.players[1]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[1]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play2" id="done2">played</button> </div>`);
+            document.querySelector('#play1').style.backgroundColor = '#959595';
+            document.querySelector('#play1').style.color = '#484848';
+        }
+
+        if(gameData.score[1] == 0){
+            game.innerHTML += `<div class="dealed"> <h3 class="blueplayer">${gameData.players[1]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[1]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play2">play</button> </div>`;
+        }
+        else {
+            game.innerHTML += `<div class="dealed"> <h3 class="blueplayer">${gameData.players[1]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[1]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play2" id="done2">played</button> </div>`;
+
+            document.querySelector('#play2').style.backgroundColor = '#959595';
+            document.querySelector('#play2').style.color = '#484848';
+        } 
 
         document.querySelector('#play1').addEventListener('click', function(){
             if(gameData.score[0] == 0){
@@ -127,7 +143,8 @@
         gameData.score[gameData.index] = gameData.score[gameData.index] + gameData.value[1];
         
         /* displays the dealed cards */
-        game.innerHTML = `<div><h3>Cards Recieved:</h3> <img src = "images/${gameData.deck[gameData.upCard[gameData.index]]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card"></div>`;
+        game.innerHTML = `<h3 class="${(gameData.index==0)?('red'):('blue')}player" id="corner">${gameData.players[gameData.index]}</h3>`;
+        game.innerHTML += `<div><h4>Cards Recieved:</h4> <img src = "images/${gameData.deck[gameData.upCard[gameData.index]]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card"></div>`;
         scorePlace.innerHTML = `<h3>Total Points: ${gameData.score[gameData.index]}</h3>`;  //shows player's score
 
         /* adds playing buttons */
@@ -139,9 +156,10 @@
 
             hit(); //calls function
 
-            game.innerHTML = `<div><h3>Cards Recieved:</h3> <img src = "images/${gameData.deck[gameData.upCard[gameData.index]]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card"></div>`; //refreshes the game for each hit
+            game.innerHTML = `<h3 class="${(gameData.index==0)?('red'):('blue')}player" id="corner">${gameData.players[gameData.index]}</h3>`;
+            game.innerHTML += `<div><h4>Cards Recieved:</h4> <img src = "images/${gameData.deck[gameData.upCard[gameData.index]]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card"></div>`; //refreshes the game for each hit
 
-            game.innerHTML += `<div><h3>Added Cards:</h3> ${hitSuit()}</div>`; //shows the added hit cards by calling a function
+            game.innerHTML += `<div><h4>Added Cards:</h4> ${hitSuit()}</div>`; //shows the added hit cards by calling a function
 
             scorePlace.innerHTML = `<h3>Total Points: ${gameData.score[gameData.index]}</h3>`;  //shows player's new total
 
