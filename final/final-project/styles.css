@@ -9,6 +9,62 @@ h1, h2{
     font-size: 4.25em;
     font-weight: 400;
     text-align: center;
+    margin-bottom: 30px;
+}
+
+h2{
+    margin: 0;
+}
+
+h3{
+    font-size: 1.5em;
+}
+
+p{
+    font-size: 1.25em;
+}
+
+#red{
+    background-color: #e60000;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+#blue{
+    background-color: #0404eb;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+input, label{
+    font-family: Barlow;
+    font-size: 1.5em;
+}
+
+input[type="text"]{
+    padding: 10px;
+    margin-left: 20px;
+    border: none;
+}
+
+label{
+    font-weight: 600;
+    font-size: 2.25em;
+}
+
+table{
+    font-family: Bigshot One;
+    font-weight: 400;
+    font-size: 2em;
+    text-align: center;
+    margin: 30px;
+}
+
+td{
+    border: solid 3px #ffffff;
+    border-collapse: collapse;
+    padding: 20px;
+    font-size: 2em;
 }
 
 footer > a{
@@ -23,7 +79,19 @@ img{
     width: 130px;
 }
 
-#startgame, #homerules, #hit, #stand{
+.dealed{
+    position: relative;
+    margin-left: 42px;
+    margin-right: 42px;
+}
+
+.back{
+    position: absolute;
+    top: 85px;
+    left: 35px;
+}
+
+#startgame, #homerules, #hit, #stand, #play1, #play2, #newmatch{
     font-weight: 600;
     font-size: 1.35em;
     color: black;
@@ -33,6 +101,12 @@ img{
     padding-right: 15px;
     background-color: #ffd500;
     border-radius: 12px;
+}
+
+#play1, #play2{
+    display: block;
+    margin: auto;
+    margin-top: 52px;
 }
 
 #quit, #rules{
@@ -71,7 +145,7 @@ img{
     transition-property: opacity, visibility;
     transition-duration: 1s;
     transition-timing-function: ease;
-    z-index: 2;
+    z-index: 3;
 }
 
 #overlay article{
@@ -90,7 +164,7 @@ img{
     top: 10px;
     left: 50%;
     transform: translate(-50%);
-    z-index: 1;
+    z-index: 2;
 }
 
 #overlay article > h3{
@@ -131,8 +205,36 @@ img{
         font-size: 6em;
     }
 
+    h3{
+        font-size: 1.75em;
+        text-align: center;
+    }
+
+    p{
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    /* table{
+        
+    } */
+    
+    /* td{
+        border: solid 3px #ffffff;
+    } */
+
     img{
-        width: 150px;
+        width: 190px;
+    }
+
+    .dealed{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .back{
+        top: 130px;
+        left: 44px;
     }
 
     #startgame, #homerules, #hit, #stand{
@@ -149,11 +251,15 @@ img{
         width: max-content;
     }
 
-    #game{
+    #game, .finalscore{
         margin-top: 3em;
         display: flex;
         justify-content: center;
         gap: 30px;
+    }
+
+    .finalscore{
+        justify-self: center;
     }
 
     #gamecontrol{

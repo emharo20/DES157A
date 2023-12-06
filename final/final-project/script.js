@@ -23,18 +23,28 @@
         deck: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"],
         players: ['Player 1', 'Player 2'],
         score: [0, 0],
-        upCard: 0,  //determines what facing card the player gets
+        upCard: [0,0],  //determines what facing card the player gets
         downCard: 0,  //determines what downward facing card the player gets
         hitCard: [],  //empty array since no cards have been added
         value:[0, 0],  //determines what the values of the dealed cards are
         hitValue: 0,   //determines what the value of the hits cards are
         index: 0,
         stand: 0,  //variable that keeps count on how many players have standed
-        gameEnd: 21
+        gameEnd: 21,
+        matchPoint: [0,0]
     };
 
+
+
+
     /* CHANGES GAME CONTROL BUTTONS AND STARTS THE GAME */
-    startGame.addEventListener('click', function(){
+    startGame.addEventListener('click', function(event){
+        event.preventDefault();
+
+        (document.querySelector('#player1').value == "") ? (gameData.players[0] = "Player 1") : (gameData.players[0] = document.querySelector('#player1').value);
+
+        (document.querySelector('#player2').value == "") ? (gameData.players[1] = "Player 2") : (gameData.players[1] = document.querySelector('#player2').value);
+
         ding.play();  //plays sound affect
 
         /* adds quit button and changes rules button id name */
@@ -51,25 +61,64 @@
             location.reload();  //reloads page
         });
 
-        setUpTurn(); //calls function
+        getFacingCard(); //calls function
     });
 
-    /* WAITING ROOM FUNCTION THAT SETS UP THE PLAYERS TURN */
-    function setUpTurn(){
-        game.innerHTML = `<h2>Now Playing: ${gameData.players[gameData.index]}</h2>`;  //displays which player's turn it is
 
+
+
+    function getFacingCard(){
+        for (let i=0; i<gameData.upCard.length; i++) {
+            /* deals the facing card and adds it to the score */
+            gameData.upCard[i] = Math.floor(Math.random()*13);  //random number bet. 0-13 generated
+        };
+
+        for (let i=0; i<gameData.score.length; i++){
+            gameData.score[i] = 0;
+        }
+
+        clickCount = 0;
+        gameData.stand = 0;
+        
+        setUpTurn();
+    }
+
+    function setUpTurn(){
         /* clearing scoring and action sections */
         scorePlace.innerHTML = '';
         actionArea.innerHTML = '';
 
-        setTimeout(play21, 3000);  //calls function but gives time for players to prepare
+        (gameData.score[0] == 0) ? (game.innerHTML = `<div class="dealed"> <h3 class="redplayer">${gameData.players[0]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[0]]}.svg" alt="up card" class="facecard1"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play1">play</button> </div>`) : (game.innerHTML = `<div class="dealed"> <h3 class="redplayer">${gameData.players[0]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[0]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play1" id="done1">played</button> </div>`);
+
+        (gameData.score[1] == 0) ? (game.innerHTML += `<div class="dealed"> <h3 class="blueplayer">${gameData.players[1]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[1]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play2">play</button> </div>`) : (game.innerHTML += `<div class="dealed"> <h3 class="blueplayer">${gameData.players[1]}</h3> <div><img src="images/${gameData.deck[gameData.upCard[1]]}.svg" alt="up card" class="facecard"> <img src="images/back.svg" alt="back of card" class="back"></div> <button id="play2" id="done2">played</button> </div>`);
+
+        document.querySelector('#play1').addEventListener('click', function(){
+            if(gameData.score[0] == 0){
+                gameData.index = 0;
+                play21();
+            }
+            else{
+                scorePlace.innerHTML = `<p>${gameData.players[0]} has already played</p>`;
+            };
+        });
+        document.querySelector('#play2').addEventListener('click', function(){
+            if(gameData.score[1] == 0){
+                gameData.index = 1;
+                play21();
+            }
+            else{
+                scorePlace.innerHTML = `<p>${gameData.players[1]} has already played</p>`;
+            };
+        });
     };
+
+
+
 
     /* THE ACTUAL GAME */
     function play21(){
         /* deals the facing card and adds it to the score */
-        gameData.upCard = Math.floor(Math.random()*13);  //random number bet. 0-13 generated
-        gameData.value[0] = cardValues(gameData.upCard); //gives value by call this function
+        gameData.value[0] = cardValues(gameData.upCard[gameData.index]); //gives value by call this function
         gameData.score[gameData.index] = gameData.score[gameData.index] + gameData.value[0]; //adds value to current player's score
 
         /* deals the "downward" facing card and adds it to the score */
@@ -78,7 +127,7 @@
         gameData.score[gameData.index] = gameData.score[gameData.index] + gameData.value[1];
         
         /* displays the dealed cards */
-        game.innerHTML = `<div><h3>Cards Recieved:</h3> <img src = "images/${gameData.deck[gameData.upCard]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card"></div>`;
+        game.innerHTML = `<div><h3>Cards Recieved:</h3> <img src = "images/${gameData.deck[gameData.upCard[gameData.index]]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card"></div>`;
         scorePlace.innerHTML = `<h3>Total Points: ${gameData.score[gameData.index]}</h3>`;  //shows player's score
 
         /* adds playing buttons */
@@ -90,7 +139,7 @@
 
             hit(); //calls function
 
-            game.innerHTML = `<div><h3>Cards Recieved:</h3> <img src = "images/${gameData.deck[gameData.upCard]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card"></div>`; //refreshes the game for each hit
+            game.innerHTML = `<div><h3>Cards Recieved:</h3> <img src = "images/${gameData.deck[gameData.upCard[gameData.index]]}.svg" alt = "up card"> <img src = "images/${gameData.deck[gameData.downCard]}.svg" alt = "down card"></div>`; //refreshes the game for each hit
 
             game.innerHTML += `<div><h3>Added Cards:</h3> ${hitSuit()}</div>`; //shows the added hit cards by calling a function
 
@@ -115,6 +164,9 @@
         });
     };
 
+
+
+
     /* FUNCTION THATS GIVES CARDS THEIR VALUE */
                          //needs a variable to be entered into the function
     function cardValues(number){
@@ -133,12 +185,18 @@
         return value; //returns the value
     };
 
+
+
+
     /* FUNCTION THAT GENERATES A NEW HIT CARD */
     function hit(){
         gameData.hitCard.push(Math.floor(Math.random()*13));  //pushes new generated card into the hitCard array
         gameData.hitValue = cardValues(gameData.hitCard[clickCount]); //generates the value for the most recent generated card
         gameData.score[gameData.index] = gameData.score[gameData.index] + gameData.hitValue; //adds the new value to the player's current score
     };
+
+
+
 
     /* FUNCTION THAT DISPLAYS THE NEW CARDS */
     function hitSuit(){
@@ -152,6 +210,9 @@
         };
         return hitCardSuit;  //returns the hit card images
     };
+
+
+
 
     /* FUNCTION FOR WHEN PLAYERS STAND */
     function standState(){
@@ -169,6 +230,9 @@
         };
     };
     
+
+
+
     /* FUNCTION THAT GIVES THE WINNER */
     function checkWinningCondition(){
         /* condition for what it displays depending on who won */
@@ -186,26 +250,53 @@
                     game.innerHTML = `<h2>It's a Tie</h2>` //if both players have the same score
                 }
                 else{
-                    (winner == gameData.score[0]) ? (game.innerHTML = `<h2>${gameData.players[0]} Wins!</h2>`) : (game.innerHTML = `<h2>${gameData.players[1]} Wins!</h2>`);  //if both players play game correctly and are below 21
-                }
+                    //if both players play game correctly and are below 21
+                    if(winner == gameData.score[0]){
+                        game.innerHTML = `<h2>${gameData.players[0]} Wins!</h2>`;
+                        gameData.matchPoint[0] = gameData.matchPoint[0] + 1;
+                    } 
+                    else{
+                        game.innerHTML = `<h2>${gameData.players[1]} Wins!</h2>`;
+                        gameData.matchPoint[1] = gameData.matchPoint[1] + 1;
+                    };
+                };
             }
             else{
                 //condition if a player goes over 21
                 winner = Math.min(gameData.score[0], gameData.score[1]);  //get the lowest score
 
-                (winner == gameData.score[0]) ? (game.innerHTML = `<h2>${gameData.players[0]} Wins!</h2>`) : (game.innerHTML = `<h2>${gameData.players[1]} Wins!</h2>`)  //displays who won based on the bust
-            }
+                //displays who won based on the bust
+                if(winner == gameData.score[0]){
+                    game.innerHTML = `<h2>${gameData.players[0]} Wins!</h2>`;
+                    gameData.matchPoint[0] = gameData.matchPoint[0] + 1;
+                } 
+                else{
+                    game.innerHTML = `<h2>${gameData.players[1]} Wins!</h2>`;
+                    gameData.matchPoint[1] = gameData.matchPoint[1] + 1;
+                };
+            };
 
             hooray.play();  //plays sound affect
         };
         
         /* displays players final score */
-        scorePlace.innerHTML = `<p>${gameData.players[0]} score: <strong>${gameData.score[0]}</strong></p>`;
-        scorePlace.innerHTML += `<p>${gameData.players[1]} score: <strong>${gameData.score[1]}</strong></p>`;
+        scorePlace.innerHTML = '';
+        const finalScore = document.createElement('div');
+        finalScore.className = 'finalscore';
+        scorePlace.append(finalScore);
 
-        actionArea.innerHTML = '';  //clears out action buttons
-        document.querySelector('#quit').innerHTML = "Start a new game"; //changes quit to start new game
+        finalScore.innerHTML = `<p>${gameData.players[0]} score: <strong>${gameData.score[0]}</strong></p>`;
+        finalScore.innerHTML += `<table> <tr><th>${gameData.players[0]}</th> <th>${gameData.players[1]}</th></tr> <tr><td>${gameData.matchPoint[0]}</td> <td>${gameData.matchPoint[1]}</td></tr> </table>`;
+        finalScore.innerHTML += `<p>${gameData.players[1]} score: <strong>${gameData.score[1]}</strong></p>`;
+
+        actionArea.innerHTML = '<button id="newmatch">Start a New Match</button>';
+
+        document.querySelector('#newmatch').addEventListener('click', function(){
+            getFacingCard();
+            finalScore.remove();
+        });
     };
+
 
 
     /* SCRIPT FOR RULES OVERLAY */
